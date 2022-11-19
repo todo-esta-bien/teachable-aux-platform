@@ -7453,6 +7453,7 @@ __metadata:
   dependencies:
     "@redwoodjs/api": 3.4.0
     "@redwoodjs/graphql-server": 3.4.0
+    cross-undici-fetch: ^0.4.14
   languageName: unknown
   linkType: soft
 
@@ -10075,7 +10076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-undici-fetch@npm:0.4.14":
+"cross-undici-fetch@npm:0.4.14, cross-undici-fetch@npm:^0.4.14":
   version: 0.4.14
   resolution: "cross-undici-fetch@npm:0.4.14"
   dependencies:
@@ -14140,6 +14141,13 @@ __metadata:
   version: 5.2.0
   resolution: "ignore@npm:5.2.0"
   checksum: 7fb7b4c4c52c2555113ff968f8a83b8ac21b076282bfcb3f468c3fb429be69bd56222306c31de95dd452c647fc6ae24339b8047ebe3ef34c02591abfec58da01
+  languageName: node
+  linkType: hard
+
+"immer@npm:^9.0.12":
+  version: 9.0.16
+  resolution: "immer@npm:9.0.16"
+  checksum: 38f3b463051b0be66e786bdb313eb3fc5b801efbf83deb64729a032ebf64fda91b44e3ad1401dcc0f6a1fcabf285ca860fbc98c136731dfddf9695277108f4f3
   languageName: node
   linkType: hard
 
@@ -19401,6 +19409,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pullstate@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "pullstate@npm:1.24.0"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+    immer: ^9.0.12
+  peerDependencies:
+    react: ^16.12.0 || ^17.0.0 || ^18.0.0
+  checksum: e165a97dbf0fe3f33e79760376cacdd56fc97ddb6285dd0325b6f0b4f41227fbe29ba27b272222529686f6b8df7abe32c7116adf034a0dc88f2d0bde95edc0b2
+  languageName: node
+  linkType: hard
+
 "pump@npm:^2.0.0":
   version: 2.0.1
   resolution: "pump@npm:2.0.1"
@@ -23402,6 +23422,7 @@ __metadata:
     "@redwoodjs/router": 3.4.0
     "@redwoodjs/web": 3.4.0
     prop-types: 15.8.1
+    pullstate: ^1.24.0
     react: 17.0.2
     react-dom: 17.0.2
   languageName: unknown
