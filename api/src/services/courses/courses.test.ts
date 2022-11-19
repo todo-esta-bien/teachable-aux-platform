@@ -1,8 +1,6 @@
 import type { Course } from '@prisma/client'
 
-import {
-  course,
-} from './courses'
+import { course } from './courses'
 import type { StandardScenario } from './courses.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances

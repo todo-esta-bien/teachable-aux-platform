@@ -1,5 +1,5 @@
 import { fetch } from 'cross-undici-fetch'
-import type {Lecture, Course} from '@prisma/client'
+import type { Lecture, Course } from '@prisma/client'
 
 interface IFetchLecture {
   course_id: number

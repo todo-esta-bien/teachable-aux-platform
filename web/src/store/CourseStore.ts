@@ -1,8 +1,8 @@
-import { Store } from "pullstate";
+import { Store } from 'pullstate'
 
 interface ICourseStore {
-  courseId?: number;
-  lessonId?: number;
+  courseId?: number
+  lessonId?: number
 }
 
-export const CourseStore = new Store<ICourseStore>({});
+export const CourseStore = new Store<ICourseStore>({})

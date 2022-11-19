@@ -19,6 +19,6 @@ jest.mock('src/lib/teachableClient', () => {
         is_published: true,
         image_url: 'String',
       }
-    })
+    }),
   }
 })

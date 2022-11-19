@@ -1,9 +1,6 @@
-import type {
-  QueryResolvers,
-  CourseRelationResolvers,
-} from 'types/graphql'
+import type { QueryResolvers, CourseRelationResolvers } from 'types/graphql'
 
-import {fetchCourse} from 'src/lib/teachableClient'
+import { fetchCourse } from 'src/lib/teachableClient'
 
 export const course: QueryResolvers['course'] = async ({ id }) => {
   return await fetchCourse(id)

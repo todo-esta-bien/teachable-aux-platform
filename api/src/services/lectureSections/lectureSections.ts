@@ -1,6 +1,4 @@
-import type {
-  LectureSectionRelationResolvers,
-} from 'types/graphql'
+import type { LectureSectionRelationResolvers } from 'types/graphql'
 
 export const LectureSection: LectureSectionRelationResolvers = {
   lectures: (_obj, { root }) => {

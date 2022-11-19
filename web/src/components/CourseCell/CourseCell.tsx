@@ -1,6 +1,6 @@
 import type { FindCourseQuery, FindCourseQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import {CourseStore} from 'src/store/CourseStore'
+import { CourseStore } from 'src/store/CourseStore'
 
 export const QUERY = gql`
   query FindCourseQuery($id: Int!) {
@@ -37,8 +37,16 @@ export const Failure = ({
 export const Success = ({
   course,
 }: CellSuccessProps<FindCourseQuery, FindCourseQueryVariables>) => {
-  return <div onClick={() => {CourseStore.update(s => {
-    // TODO: Change for current lesson value
-    s.lessonId = 43491536
-  })}}>{JSON.stringify(course, null, 2)}</div>
+  return (
+    <div
+      onClick={() => {
+        CourseStore.update((s) => {
+          // TODO: Change for current lesson value
+          s.lessonId = 43491536
+        })
+      }}
+    >
+      {JSON.stringify(course, null, 2)}
+    </div>
+  )
 }

@@ -1,6 +1,4 @@
-import {
-  lecture
-} from './lectures'
+import { lecture } from './lectures'
 import type { StandardScenario } from './lectures.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -11,7 +9,10 @@ import type { StandardScenario } from './lectures.scenarios'
 
 describe('lectures', () => {
   scenario('returns a single lecture', async (scenario: StandardScenario) => {
-    const result = await lecture({ lecture_id: scenario.lecture.one.id, course_id: 1 })
+    const result = await lecture({
+      lecture_id: scenario.lecture.one.id,
+      course_id: 1,
+    })
 
     expect(result).toEqual(scenario.lecture.one)
   })
