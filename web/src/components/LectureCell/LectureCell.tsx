@@ -1,5 +1,7 @@
 import type { FindLectureQuery, FindLectureQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import TeachableAttachment from 'src/components/TeachableAttachment'
+import type { ITeachableAssignment } from 'src/components/TeachableAttachment'
 
 export const QUERY = gql`
   query FindLectureQuery($course_id: Int!, $lecture_id: Int!) {
@@ -33,5 +35,15 @@ export const Failure = ({
 export const Success = ({
   lecture,
 }: CellSuccessProps<FindLectureQuery, FindLectureQueryVariables>) => {
-  return <div>{JSON.stringify(lecture)}</div>
+  return (
+    <div>
+      <h1 className="text-xl">{lecture.name}</h1>
+      {lecture.attachments.map((attachment) => (
+        <TeachableAttachment
+          key={attachment.id}
+          {...(attachment as ITeachableAssignment)}
+        />
+      ))}
+    </div>
+  )
 }

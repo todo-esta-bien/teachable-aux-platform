@@ -1,5 +1,11 @@
-import type { FindCourseQuery, FindCourseQueryVariables } from 'types/graphql'
+import type {
+  FindCourseQuery,
+  FindCourseQueryVariables,
+  LectureSection,
+} from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import LessonsDrawer from 'src/components/LessonsDrawer'
+import LectureCell from 'src/components/LectureCell'
 import { CourseStore } from 'src/store/CourseStore'
 
 export const QUERY = gql`
@@ -37,16 +43,23 @@ export const Failure = ({
 export const Success = ({
   course,
 }: CellSuccessProps<FindCourseQuery, FindCourseQueryVariables>) => {
+  const { lessonId, courseId } = CourseStore.useState((s) => ({
+    lessonId: s.lessonId,
+    courseId: s.courseId,
+  }))
+
   return (
-    <div
-      onClick={() => {
-        CourseStore.update((s) => {
-          // TODO: Change for current lesson value
-          s.lessonId = 43491536
-        })
-      }}
-    >
-      {JSON.stringify(course, null, 2)}
+    <div>
+      <LessonsDrawer
+        lectureSections={course.lecture_sections as LectureSection[]}
+      >
+        <h1 className="text-3xl">{course.name}</h1>
+        {!!lessonId ? (
+          <LectureCell course_id={+courseId} lecture_id={lessonId} />
+        ) : (
+          <h1 className="text-xl">Selecciona una lección de la izquierda</h1>
+        )}
+      </LessonsDrawer>
     </div>
   )
 }

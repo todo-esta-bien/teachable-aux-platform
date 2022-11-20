@@ -1,5 +1,3 @@
-import type { Course } from '@prisma/client'
-
 import { course } from './courses'
 import type { StandardScenario } from './courses.scenarios'
 
