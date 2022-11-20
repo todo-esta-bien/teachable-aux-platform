@@ -7,6 +7,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import LessonsDrawer from 'src/components/LessonsDrawer'
 import LectureCell from 'src/components/LectureCell'
 import { CourseStore } from 'src/store/CourseStore'
+import Navbar from 'src/components/Navbar'
 
 export const QUERY = gql`
   query FindCourseQuery($id: Int!) {
@@ -50,14 +51,14 @@ export const Success = ({
 
   return (
     <div>
+      <Navbar courseName={course.name} />
       <LessonsDrawer
         lectureSections={course.lecture_sections as LectureSection[]}
       >
-        <h1 className="text-3xl">{course.name}</h1>
         {!!lessonId ? (
           <LectureCell course_id={+courseId} lecture_id={lessonId} />
         ) : (
-          <h1 className="text-xl">Selecciona una lección de la izquierda</h1>
+          <h1 className="text-4xl">Selecciona una lección de la izquierda</h1>
         )}
       </LessonsDrawer>
     </div>

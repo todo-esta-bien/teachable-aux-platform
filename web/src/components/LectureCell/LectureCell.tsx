@@ -37,7 +37,7 @@ export const Success = ({
 }: CellSuccessProps<FindLectureQuery, FindLectureQueryVariables>) => {
   return (
     <div>
-      <h1 className="text-xl">{lecture.name}</h1>
+      <h1 className="p-3 text-5xl">{lecture.name}</h1>
       {lecture.attachments.map((attachment) => (
         <TeachableAttachment
           key={attachment.id}

@@ -1,8 +1,9 @@
-import type { LectureSection } from 'types/graphql'
+import type { LectureSection as LectureSectionType } from 'types/graphql'
+import LectureSection from 'src/components/LectureSection'
 
 interface ILessonDrawer {
   children: React.ReactNode
-  lectureSections: LectureSection[]
+  lectureSections: LectureSectionType[]
 }
 import { CourseStore } from 'src/store/CourseStore'
 
@@ -15,7 +16,7 @@ const LessonsDrawer = ({ children, lectureSections }: ILessonDrawer) => {
   return (
     <div className="drawer-mobile drawer">
       <input id="lessons-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+      <div className="drawer-content bg-base-200 p-4">
         {/*<!-- Page content here -->*/}
         {children}
         <label
@@ -25,18 +26,15 @@ const LessonsDrawer = ({ children, lectureSections }: ILessonDrawer) => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side bg-base-300">
         <label htmlFor="lessons-drawer" className="drawer-overlay"></label>
-        <ul className="menu w-80 bg-base-100 p-4 text-base-content">
+        <ul className="menu w-80 p-4 text-base-content">
           {/*<!-- Sidebar content here -->*/}
           {lectureSections
             .filter((section) => section.is_published)
             .map((section) => {
               return (
-                <div key={section.id}>
-                  <h1 className="pb-4 text-lg">
-                    <a>{section.name}</a>
-                  </h1>
+                <LectureSection sectionName={section.name} key={section.id}>
                   {section.lectures.map((lecture, idx) => (
                     <li key={lecture.id}>
                       <button onClick={() => updateLessonId(lecture.id)}>
@@ -44,7 +42,7 @@ const LessonsDrawer = ({ children, lectureSections }: ILessonDrawer) => {
                       </button>
                     </li>
                   ))}
-                </div>
+                </LectureSection>
               )
             })}
         </ul>

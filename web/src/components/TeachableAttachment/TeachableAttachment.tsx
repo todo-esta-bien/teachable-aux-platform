@@ -46,7 +46,12 @@ const TeachableAttachment = ({ kind, url, text }: ITeachableAssignment) => {
   }
 
   const lectureHtml = { __html: text }
-  return <div dangerouslySetInnerHTML={lectureHtml}></div>
+  return (
+    <article
+      className="prose-lg prose"
+      dangerouslySetInnerHTML={lectureHtml}
+    ></article>
+  )
 }
 
 export default TeachableAttachment
