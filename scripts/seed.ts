@@ -9,11 +9,17 @@ export default async () => {
     //
     // Update "const data = []" to match your data model and seeding needs
     //
-    const data: Prisma.UserExampleCreateArgs['data'][] = [
+    const data: Prisma.UserCreateArgs['data'][] = [
       // To try this example data with the UserExample model in schema.prisma,
       // uncomment the lines below and run 'yarn rw prisma migrate dev'
-      //
-      // { name: 'alice', email: 'alice@example.com' },
+      // password: password
+      {
+        name: 'Leticia Neri',
+        email: 'lneri@example.com',
+        hashedPassword:
+          'a82617c254ad885bf2a9512be27fc79c76dc5f746a7bcb5f92e9d70bbcf0d977',
+        salt: '9b38710642947c61547aa1b4f0bee12a',
+      },
       // { name: 'mark', email: 'mark@example.com' },
       // { name: 'jackie', email: 'jackie@example.com' },
       // { name: 'bob', email: 'bob@example.com' },
@@ -28,8 +34,8 @@ export default async () => {
       //
       // Change to match your data model and seeding needs
       //
-      data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
-        const record = await db.userExample.create({ data })
+      data.map(async (data: Prisma.UserCreateArgs['data']) => {
+        const record = await db.user.create({ data })
         console.log(record)
       })
     )
