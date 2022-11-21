@@ -8,6 +8,8 @@ CREATE TABLE "User" (
     "resetToken" TEXT,
     "resetTokenExpiresAt" TIMESTAMP(3),
     "webAuthnChallenge" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -19,8 +21,44 @@ CREATE TABLE "UserCredential" (
     "publicKey" BYTEA NOT NULL,
     "transports" TEXT,
     "counter" BIGINT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "UserCredential_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "TeachableCourse" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "teachableId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "TeachableCourse_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Student" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Student_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "StudentsOnTeachableCourse" (
+    "id" SERIAL NOT NULL,
+    "studentId" INTEGER NOT NULL,
+    "teachableCourseId" INTEGER NOT NULL,
+    "token" TEXT NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "StudentsOnTeachableCourse_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -79,8 +117,17 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "User_webAuthnChallenge_key" ON "User"("webAuthnChallenge");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "StudentsOnTeachableCourse_studentId_teachableCourseId_key" ON "StudentsOnTeachableCourse"("studentId", "teachableCourseId");
+
 -- AddForeignKey
 ALTER TABLE "UserCredential" ADD CONSTRAINT "UserCredential_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "StudentsOnTeachableCourse" ADD CONSTRAINT "StudentsOnTeachableCourse_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "StudentsOnTeachableCourse" ADD CONSTRAINT "StudentsOnTeachableCourse_teachableCourseId_fkey" FOREIGN KEY ("teachableCourseId") REFERENCES "TeachableCourse"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Attachment" ADD CONSTRAINT "Attachment_lectureId_fkey" FOREIGN KEY ("lectureId") REFERENCES "Lecture"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

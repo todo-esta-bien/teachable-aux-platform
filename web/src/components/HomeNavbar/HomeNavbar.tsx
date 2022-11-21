@@ -7,10 +7,32 @@ const HomeNavbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn-ghost btn text-xl normal-case">{currentUser?.name}</a>
+        <button className="btn-ghost btn text-xl normal-case">
+          <Link to={routes.home()}>{currentUser?.name}</Link>
+        </button>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
+          <li>
+            <button>
+              <Link to={routes.home()}>Inicio</Link>
+            </button>
+          </li>
+          <li>
+            <button>
+              <Link to={routes.students()}>Estudiantes</Link>
+            </button>
+          </li>
+          <li>
+            <button>
+              <Link to={routes.teachableCourses()}>Cursos</Link>
+            </button>
+          </li>
+          <li>
+            <button>
+              <Link to={routes.studentsOnTeachableCourses()}>Tokens</Link>
+            </button>
+          </li>
           <li>
             <button onClick={logOut}>Cerrar Sesión</button>
           </li>

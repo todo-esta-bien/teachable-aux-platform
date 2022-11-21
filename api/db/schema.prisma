@@ -20,15 +20,50 @@ model User {
   resetTokenExpiresAt DateTime?
   webAuthnChallenge   String?          @unique
   credentials         UserCredential[]
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
 }
 
 model UserCredential {
-  id         String  @id
+  id         String   @id
   userId     Int
-  user       User    @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
   publicKey  Bytes
   transports String?
   counter    BigInt
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model TeachableCourse {
+  id          Int                         @id @default(autoincrement())
+  name        String
+  teachableId Int
+  students    StudentsOnTeachableCourse[]
+  createdAt   DateTime                    @default(now())
+  updatedAt   DateTime                    @updatedAt
+}
+
+model Student {
+  id        Int                         @id @default(autoincrement())
+  name      String
+  courses   StudentsOnTeachableCourse[]
+  createdAt DateTime                    @default(now())
+  updatedAt DateTime                    @updatedAt
+}
+
+model StudentsOnTeachableCourse {
+  id                Int             @id @default(autoincrement())
+  studentId         Int
+  student           Student         @relation(fields: [studentId], references: [id])
+  teachableCourseId Int
+  teachableCourse   TeachableCourse @relation(fields: [teachableCourseId], references: [id])
+  token             String          @default(uuid())
+  isActive          Boolean         @default(true)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@unique([studentId, teachableCourseId])
 }
 
 // Teachable API documentation: https://docs.teachable.com/reference/showlecture
