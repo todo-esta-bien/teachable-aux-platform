@@ -15,7 +15,7 @@ export default async () => {
       // password: password
       {
         name: 'Leticia Neri',
-        email: 'lneri@example.com',
+        email: 'tienda@todoestabien.com.mx',
         hashedPassword:
           'a82617c254ad885bf2a9512be27fc79c76dc5f746a7bcb5f92e9d70bbcf0d977',
         salt: '9b38710642947c61547aa1b4f0bee12a',
