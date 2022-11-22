@@ -1,3 +1,4 @@
+import { LinkIcon } from '@heroicons/react/24/solid'
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -38,6 +39,17 @@ const StudentsOnTeachableCoursesList = ({
     }
   )
 
+  const copyCreatedUrl = ({ courseId, token }) => {
+    const host =
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8910'
+        : 'https://teachable-aux.todoestabien.com.mx'
+    const generatedUrl = `${host}/course?authToken=${token}&courseId=${courseId}`
+    // Copy to clipboard
+    navigator.clipboard.writeText(generatedUrl)
+    toast.success('Enlace copiado')
+  }
+
   const onDeleteClick = (
     id: DeleteStudentsOnTeachableCourseMutationVariables['id']
   ) => {
@@ -56,8 +68,8 @@ const StudentsOnTeachableCoursesList = ({
         <thead>
           <tr>
             <th>Id</th>
-            <th>Student id</th>
-            <th>Teachable course id</th>
+            <th>Student Name</th>
+            <th>Course Name</th>
             <th>Token</th>
             <th>Is active</th>
             <th>Created at</th>
@@ -69,14 +81,33 @@ const StudentsOnTeachableCoursesList = ({
           {studentsOnTeachableCourses.map((studentsOnTeachableCourse) => (
             <tr key={studentsOnTeachableCourse.id}>
               <td>{truncate(studentsOnTeachableCourse.id)}</td>
-              <td>{truncate(studentsOnTeachableCourse.studentId)}</td>
-              <td>{truncate(studentsOnTeachableCourse.teachableCourseId)}</td>
+              <td>{truncate(studentsOnTeachableCourse.student.name)}</td>
+              <td>
+                {truncate(studentsOnTeachableCourse.teachableCourse.name)}
+              </td>
               <td>{truncate(studentsOnTeachableCourse.token)}</td>
               <td>{checkboxInputTag(studentsOnTeachableCourse.isActive)}</td>
               <td>{timeTag(studentsOnTeachableCourse.createdAt)}</td>
               <td>{timeTag(studentsOnTeachableCourse.updatedAt)}</td>
               <td>
                 <nav className="rw-table-actions">
+                  <button
+                    type="button"
+                    title={
+                      'Copy token url for ' +
+                      studentsOnTeachableCourse.student.name
+                    }
+                    className="rw-button rw-button-small"
+                    onClick={() =>
+                      copyCreatedUrl({
+                        token: studentsOnTeachableCourse.token,
+                        courseId:
+                          studentsOnTeachableCourse.teachableCourse.teachableId,
+                      })
+                    }
+                  >
+                    <LinkIcon className="h-5 w-5" />
+                  </button>
                   <Link
                     to={routes.studentsOnTeachableCourse({
                       id: studentsOnTeachableCourse.id,

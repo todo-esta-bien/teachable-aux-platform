@@ -72,7 +72,7 @@ const StudentsOnTeachableCourseForm = (
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Teachable course id
+          Internal Course Id
         </Label>
 
         <NumberField

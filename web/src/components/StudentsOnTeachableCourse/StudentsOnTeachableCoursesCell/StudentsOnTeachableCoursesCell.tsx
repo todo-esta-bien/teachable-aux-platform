@@ -15,6 +15,13 @@ export const QUERY = gql`
       isActive
       createdAt
       updatedAt
+      student {
+        name
+      }
+      teachableCourse {
+        name
+        teachableId
+      }
     }
   }
 `
