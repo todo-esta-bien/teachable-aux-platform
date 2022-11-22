@@ -6,6 +6,11 @@ Welcome to [RedwoodJS](https://redwoodjs.com)!
 docker run --rm -p 5432:5432 -e POSTGRES_PASSWORD=root -e POSTGRES_USER=root postgres:14.6
 ```
 
+## Deploy
+
+- DB: Railway with `tienda@todoestabien.com.mx`
+- Project: Netlify with `roeeyn`
+
 > **Prerequisites**
 >
 > - Redwood requires [Node.js](https://nodejs.org/en/) (>=14.19.x <=16.x) and [Yarn](https://yarnpkg.com/) (>=1.15)
