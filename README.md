@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e440776f-6da8-4e6c-90f3-6c7ea5814080/deploy-status)](https://app.netlify.com/sites/dynamic-valkyrie-d353be/deploys)
+
 # README
 
 Welcome to [RedwoodJS](https://redwoodjs.com)!
