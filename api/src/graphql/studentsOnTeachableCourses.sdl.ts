@@ -14,6 +14,10 @@ export const schema = gql`
   type Query {
     studentsOnTeachableCourses: [StudentsOnTeachableCourse!]! @requireAuth
     studentsOnTeachableCourse(id: Int!): StudentsOnTeachableCourse @requireAuth
+    studentsOnTeachableCourseByToken(
+      token: String!
+      courseId: Int!
+    ): StudentsOnTeachableCourse @skipAuth
   }
 
   input CreateStudentsOnTeachableCourseInput {

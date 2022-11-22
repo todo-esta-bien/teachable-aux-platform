@@ -1,7 +1,6 @@
 import { Store } from 'pullstate'
 
 interface ICourseStore {
-  courseId?: number
   lessonId?: number
 }
 

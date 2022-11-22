@@ -18,6 +18,19 @@ export const studentsOnTeachableCourse: QueryResolvers['studentsOnTeachableCours
     })
   }
 
+export const studentsOnTeachableCourseByToken: QueryResolvers['studentsOnTeachableCourseByToken'] =
+  ({ token, courseId }) => {
+    return db.studentsOnTeachableCourse.findFirst({
+      where: {
+        token,
+        isActive: true,
+        teachableCourse: {
+          teachableId: courseId,
+        },
+      },
+    })
+  }
+
 export const createStudentsOnTeachableCourse: MutationResolvers['createStudentsOnTeachableCourse'] =
   ({ input }) => {
     return db.studentsOnTeachableCourse.create({

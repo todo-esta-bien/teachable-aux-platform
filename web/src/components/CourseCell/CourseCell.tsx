@@ -44,23 +44,22 @@ export const Failure = ({
 export const Success = ({
   course,
 }: CellSuccessProps<FindCourseQuery, FindCourseQueryVariables>) => {
-  const { lessonId, courseId } = CourseStore.useState((s) => ({
+  const { lessonId } = CourseStore.useState((s) => ({
     lessonId: s.lessonId,
-    courseId: s.courseId,
   }))
 
   return (
-    <div>
+    <>
       <Navbar courseName={course.name} />
       <LessonsDrawer
         lectureSections={course.lecture_sections as LectureSection[]}
       >
         {!!lessonId ? (
-          <LectureCell course_id={+courseId} lecture_id={lessonId} />
+          <LectureCell course_id={course.id} lecture_id={lessonId} />
         ) : (
           <h1 className="text-4xl">Selecciona una lección de la izquierda</h1>
         )}
       </LessonsDrawer>
-    </div>
+    </>
   )
 }

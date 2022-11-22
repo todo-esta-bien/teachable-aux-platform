@@ -10,8 +10,8 @@ const LectureSection = ({ children, sectionName }: ILectureSection) => {
   const toggleVisibility = () => setIsVisible((prevState) => !prevState)
   return (
     <div>
-      <h1 className="pb-4 text-lg">
-        <button onClick={toggleVisibility} className="btn-ghost btn">
+      <h1 className="pb-4 text-xl">
+        <button onClick={toggleVisibility} className="btn max-lg:glass">
           {sectionName}
         </button>
       </h1>

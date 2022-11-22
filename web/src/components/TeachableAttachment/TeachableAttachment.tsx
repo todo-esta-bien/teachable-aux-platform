@@ -34,7 +34,7 @@ const TeachableAttachment = ({ kind, url, text }: ITeachableAssignment) => {
   }
 
   if (attachmentType === AttachmentType.Image) {
-    return <img className="max-w-screen-md" src={url} />
+    return <img className="sm:max-lg:max-w-md" src={url} />
   }
 
   if (attachmentType === AttachmentType.Video) {

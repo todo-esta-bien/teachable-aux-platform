@@ -8,7 +8,9 @@ const HomePage = () => {
       <MetaTags title="Home" description="Home page" />
 
       <HomeNavbar />
-      <section className="h-screen bg-base-200 p-6"></section>
+      <section className="h-screen bg-base-200 p-6">
+        <h1 className="text-4xl">Ponte a jalar</h1>
+      </section>
     </>
   )
 }
