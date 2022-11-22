@@ -11,6 +11,6 @@ export const schema = gql`
   }
 
   type Query {
-    lecture(course_id: Int!, lecture_id: Int!): Lecture @requireAuth
+    lecture(course_id: Int!, lecture_id: Int!): Lecture @skipAuth
   }
 `
